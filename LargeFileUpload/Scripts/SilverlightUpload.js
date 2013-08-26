@@ -17,11 +17,13 @@
 *
 * == END LICENSE ==
 */
-window.System = window.System || {};
+//window.System = window.System || {};
+
+Namespace.Register("System.FileUpload.Silverlight");
 
 System.FileUploaders = [];
 
-System.FileUploader = function (Area, FileGUID, finishedCallBack) {
+System.FileUpload.Silverlight.CreateFileUploader = function (Area, FileGUID, initializedCallBack, finishedCallBack) {
     var obj = {};
 
     var fileGUID = "not_set";
@@ -95,7 +97,7 @@ System.FileUploader = function (Area, FileGUID, finishedCallBack) {
 
     obj = {
         areaID: null,
-        init: function (area, finishedcallback) {
+        init: function (area, initializedCallBack, finishedcallback) {
             var id = $(area).attr("id");
             obj.areaID = id;
             fileGUID = FileGUID;
@@ -106,7 +108,10 @@ System.FileUploader = function (Area, FileGUID, finishedCallBack) {
             slCtl = document.getElementById(id);
 //            var it = System.FileUploaders[uploaderIndex];
 //            
-//            var i = 0;
+            //            var i = 0;
+            if (initializedCallBack) {
+                initializedCallBack();
+            }
         },
         StopUpload: function () {
             slCtl.Content.Page.StopUpload();
@@ -245,7 +250,7 @@ System.FileUploader = function (Area, FileGUID, finishedCallBack) {
     };
 
     $(function () {
-        obj.init(Area, finishedCallBack);
+        obj.init(Area, initializedCallBack, finishedCallBack);
     });
 
     return obj;
