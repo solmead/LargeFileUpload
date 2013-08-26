@@ -142,6 +142,7 @@ Public Class FileHandler
             Resp = <Response><Error>False</Error><Description></Description></Response>
         Catch ex As Exception
             Dim I As Integer = 0
+            Debug.WriteLine("Error: " & ex.ToString)
             Resp = <Response><Error>True</Error><Description><%= ex.ToString %></Description></Response>
         End Try
 

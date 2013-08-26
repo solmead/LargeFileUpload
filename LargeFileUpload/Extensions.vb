@@ -7,8 +7,12 @@ Imports System.Web
 
 Public Module Extensions
 
+    Public Enum UploadTypeEnum
+        SilverLight
+        Flash
+    End Enum
     <Extension()> _
-    Public Function UploadFileActionLink(ByVal source As HtmlHelper, ByVal ID As String, Optional callbackFunction As String = "") As MvcHtmlString
+    Public Function UploadFileActionLink(ByVal source As HtmlHelper, ByVal ID As String, Optional UploadType As UploadTypeEnum = UploadTypeEnum.Flash, Optional initializedFunction As String = "", Optional finishedFunction As String = "") As MvcHtmlString
         Dim URL As New UrlHelper(source.ViewContext.RequestContext)
         Dim FileGUID As String = source.ViewData("FileGUID")
         If FileGUID Is Nothing OrElse FileGUID = "" Then
@@ -16,6 +20,12 @@ Public Module Extensions
         End If
         Dim FileGUIDText = ID & "_" & FileGUID
         'Dim postAction = URL.RouteUrl("Default", New With {.Controller = "UploadedFile", .Action = "AsyncUpload", .FileGUID = FileGUIDText})
+        If String.IsNullOrWhiteSpace(initializedFunction) Then
+            initializedFunction = "null"
+        End If
+        If String.IsNullOrWhiteSpace(finishedFunction) Then
+            finishedFunction = "null"
+        End If
 
         Dim SB As New StringBuilder
         SB.AppendLine("<input type=""file"" id=""" & ID & """ name=""" & ID & """ />")
@@ -23,8 +33,12 @@ Public Module Extensions
         SB.AppendLine(source.Hidden(ID & "_FileGUID_Actual", FileGUID).ToString)
         SB.AppendLine(source.Hidden(ID & "_FileGUID", ID & "_" & FileGUID).ToString)
         SB.AppendLine("<script type=""text/javascript"">")
-        SB.AppendLine("    $(document).ready(function() {")
-        SB.AppendLine("         var uploader = System.FileUploader('#" & ID & "', '" + ID + "_" + FileGUID + "'" + IIf(String.IsNullOrWhiteSpace(callbackFunction), "", ", " + callbackFunction) + ");")
+        SB.AppendLine("    $(function() {")
+        If UploadType = UploadTypeEnum.SilverLight Then
+            SB.AppendLine("         var uploader = System.FileUpload.Silverlight.CreateFileUploader('#" & ID & "', '" + ID + "_" + FileGUID + "', " + initializedFunction + ", " + finishedFunction + ");")
+        Else
+            SB.AppendLine("         var uploader = System.FileUpload.Flash.CreateFileUploader('#" & ID & "', '" + ID + "_" + FileGUID + "', " + initializedFunction + ", " + finishedFunction + ");")
+        End If
         SB.AppendLine("    });")
         SB.AppendLine("</script>")
 
