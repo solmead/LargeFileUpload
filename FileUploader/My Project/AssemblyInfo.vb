@@ -7,18 +7,17 @@ Imports System.Runtime.InteropServices
 ' associated with an assembly.
 
 ' Review the values of the assembly attributes
-
-<Assembly: AssemblyTitle("LargeFileUpload")> 
-<Assembly: AssemblyDescription("Large File Upload")> 
-<Assembly: AssemblyCompany("Solmead Productions")> 
-<Assembly: AssemblyProduct("LargeFileUpload")> 
-<Assembly: AssemblyCopyright("Copyright ©  2012")> 
-<Assembly: AssemblyTrademark("Solmead Productions")> 
+<Assembly: AssemblyTitle("FileUploader")> 
+<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyCompany("")> 
+<Assembly: AssemblyProduct("FileUploader")> 
+<Assembly: AssemblyCopyright("Copyright ©  2012 Solmead Productions")> 
+<Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("eacdbd9f-6190-4a67-9d07-9a82ff8ed174")> 
+<Assembly: Guid("3538f0f0-11be-48d0-b023-f5e3ab57ca9a")> 
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -31,5 +30,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("4.5.*")> 
-<Assembly: AssemblyFileVersion("4.5.0.0")> 
+<Assembly: AssemblyVersion("1.0.0.0")> 
+<Assembly: AssemblyFileVersion("1.0.0.0")> 

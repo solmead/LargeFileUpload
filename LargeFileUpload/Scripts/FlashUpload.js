@@ -19,9 +19,45 @@
 */
 //window.System = window.System || {};
 
-Namespace.Register("System.FileUpload.Flash");
+System = System || {};
+System.FileUpload = System.FileUpload || {};
+System.FileUpload.Flash = System.FileUpload.Flash || {};
 
 System.FileUploaders = [];
+
+System.FileUpload.Flash.scriptFilename = 'FlashUpload.js'; // don't forget to set the filename 
+System.FileUpload.Flash.scriptUrl = (function () {
+    if (document.currentScript) { // support defer & async (mozilla only)
+        return document.currentScript.src;
+    } else {
+        var ls, s;
+        var getSrc = function (ls, attr) {
+            var i, l = ls.length, nf, s;
+            for (i = 0; i < l; i++) {
+                s = null;
+                if (ls[i].getAttribute.length !== undefined) {
+                    s = ls[i].getAttribute(attr, 2);
+                }
+                if (!s) continue; // tag with no src
+                nf = s;
+                nf = nf.split('?')[0].split('/').pop(); // get script filename
+                if (nf === System.FileUpload.Flash.scriptFilename) {
+                    return s;
+                }
+            }
+        };
+        ls = document.getElementsByTagName('script');
+        s = getSrc(ls, 'src');
+        if (!s) { // search reference of script loaded by jQuery.getScript() in meta[name=srcipt][content=url]
+            ls = document.getElementsByTagName('meta');
+            s = getSrc(ls, 'content');
+        }
+        if (s) return s;
+    }
+    return '';
+})();
+
+System.FileUpload.Flash.scriptPath = System.FileUpload.Flash.scriptUrl.substring(0, System.FileUpload.Flash.scriptUrl.lastIndexOf('/')) + "/";
 
 System.FileUpload.Flash.CreateFileUploader = function (Area, FileGUID, initializedCallBack, finishedCallBack) {
 	var obj = {};
@@ -161,7 +197,7 @@ System.FileUpload.Flash.CreateFileUploader = function (Area, FileGUID, initializ
 		CreateSWFObject: function () {
 			var id = $(BaseArea).attr("id");
 			$(BaseArea).parent().swfupload({
-				upload_url: "/FileHandler.ashx?FileGUID=" + fileGUID,
+			    upload_url: "FileHandler.axd?FileGUID=" + fileGUID,
 				file_size_limit: "1024000",
 				file_types: "*.*",
 				file_types_description: "All Files",

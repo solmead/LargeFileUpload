@@ -1,0 +1,12 @@
+﻿<configuration>
+  <system.web>
+    <httpHandlers>
+      <add verb="GET" path="FileHandler.axd" type="LargeFileUpload.FileHandler" />
+    </httpHandlers>
+  </system.web>
+  <system.webServer>
+    <handlers>
+      <add name="FileHandler" path="FileHandler.axd" verb="GET" type="LargeFileUpload.FileHandler" resourceType="Unspecified" preCondition="" />
+    </handlers>
+  </system.webServer>
+</configuration> 

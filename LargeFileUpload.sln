@@ -1,7 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LargeFileUpload", "LargeFileUpload\LargeFileUpload.vbproj", "{3BE08B2E-B75B-4FB4-8987-F694B8DBF8C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4DA090FB-1E57-4E0E-AB50-6E91E5773945}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "FileUploader", "FileUploader\FileUploader.vbproj", "{A4BD01BA-4ACE-4060-A5A2-0FEE897C1A4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,6 +27,12 @@ Global
 		{3BE08B2E-B75B-4FB4-8987-F694B8DBF8C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BE08B2E-B75B-4FB4-8987-F694B8DBF8C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BE08B2E-B75B-4FB4-8987-F694B8DBF8C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4BD01BA-4ACE-4060-A5A2-0FEE897C1A4A}.3.5|Any CPU.ActiveCfg = Release|Any CPU
+		{A4BD01BA-4ACE-4060-A5A2-0FEE897C1A4A}.3.5|Any CPU.Build.0 = Release|Any CPU
+		{A4BD01BA-4ACE-4060-A5A2-0FEE897C1A4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4BD01BA-4ACE-4060-A5A2-0FEE897C1A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4BD01BA-4ACE-4060-A5A2-0FEE897C1A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4BD01BA-4ACE-4060-A5A2-0FEE897C1A4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

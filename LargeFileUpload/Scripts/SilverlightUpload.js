@@ -17,9 +17,9 @@
 *
 * == END LICENSE ==
 */
-//window.System = window.System || {};
-
-Namespace.Register("System.FileUpload.Silverlight");
+System = System || {};
+System.FileUpload = System.FileUpload || {};
+System.FileUpload.Silverlight = System.FileUpload.Silverlight || {};
 
 System.FileUploaders = [];
 
