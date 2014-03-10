@@ -6,7 +6,7 @@ Imports System.IO
 Imports System.Web
 
 Public Module Extensions
-
+    Public Delegate Function GetFileInterface() As IFileInterface
     Public Enum UploadTypeEnum
         SilverLight
         Flash
@@ -47,20 +47,15 @@ Public Module Extensions
 
 
     <Extension()> _
-    Public Function GetUploadedFile(ByVal source As System.Web.Mvc.Controller, ByVal origItem As IFileInterface, ByVal newItem As IFileInterface, ByVal baseName As String, ByVal itemName As String) As IFileInterface
+    Public Function GetUploadedFile(ByVal source As System.Web.Mvc.Controller, ByVal id As String, ByVal itemName As String, getFileInstance As GetFileInterface) As IFileInterface
         Dim Context = HttpContext.Current
         Dim Request = Context.Request
 
-        Dim item As IFileInterface
-        If origItem IsNot Nothing Then
-            item = origItem
-        Else
-            item = newItem
-        End If
-        Dim guid As String = Request.Form(baseName & "_guid")
-        Dim fname As String = Request.Form(baseName & "_filename")
+        Dim item As IFileInterface = getFileInstance()
+        'Dim guid As String = Request.Form(baseName & "_guid")
+        Dim fname As String = Request.Form(id & "_filename")
 
-        Dim fileUploaded = Request.Files(baseName)
+        Dim fileUploaded = Request.Files(id)
 
         If fileUploaded IsNot Nothing AndAlso fileUploaded.ContentLength > 1000 Then
             item.SetInitialFileFromUploadedFile(fileUploaded)
@@ -70,8 +65,8 @@ Public Module Extensions
             item.SpecialHandling()
             Return item
         ElseIf fname IsNot Nothing AndAlso fname.Length > 0 Then
-            guid = Request.Form(baseName & "_FileGUID")
-            Dim fi As New FileInfo(Settings.FileDirectory.FullName & "/AsyncUploads/" & guid & ".tmp")
+            Dim guid = Request.Form(id & "_FileGUID")
+            Dim fi As New FileInfo(MySettings.FileDirectory.FullName & "/" & guid & ".tmp")
             If fi.Exists Then
                 item.SetIntialFileDataFromFile(fi, fname)
                 item.Name = itemName
@@ -83,7 +78,7 @@ Public Module Extensions
                 Throw New Exception("Temp file not found on server. FileName=[" & fname & "] TempName=[" & fi.FullName & "]")
             End If
         End If
-        Return origItem
+        Return item
     End Function
 
 

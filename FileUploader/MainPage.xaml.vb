@@ -120,7 +120,7 @@ Partial Public Class MainPage
                 'UploadFile()
                 WR.File = Upload.File
                 WR.FileGUID = FileGUID
-                WR.UploadUrl = New Uri(baseUri.AbsoluteUri & "FileHandler.ashx")
+                WR.UploadUrl = New Uri(baseUri.AbsoluteUri & "FileHandler.axd")
                 WR.Upload()
 
                 DTimer.Start()

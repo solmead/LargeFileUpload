@@ -16,7 +16,7 @@ Public Class GenericUploadedFile
     Public Sub SetInitialFileFromUploadedFile(hpf As Web.HttpPostedFile, Optional Filename As String = "") Implements IFileInterface.SetInitialFileFromUploadedFile
         Dim context = HttpContext.Current
         Dim tguid = Guid.NewGuid.ToString
-        Dim fi As New FileInfo(Settings.FileDirectory.FullName & "/AsyncUploads/" & tguid & ".tmp")
+        Dim fi As New FileInfo(MySettings.FileDirectory.FullName & "/" & tguid & ".tmp")
         hpf.SaveAs(fi.FullName)
         File = fi
         Me.FileName = Filename

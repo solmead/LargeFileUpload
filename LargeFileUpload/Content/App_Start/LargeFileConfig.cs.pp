@@ -15,12 +15,13 @@ namespace $rootnamespace$.App_Start {
 			RegisterBundles(BundleTable.Bundles);
         }
 		
-		Public static void RegisterBundles(BundleCollection bundles) {
+		public static void RegisterBundles(BundleCollection bundles) {
 
             bundles.Add(new ScriptBundle("~/bundles/LargeFileUpload").Include(
                 "~/Scripts/LargeFileUpload/Silverlight.js",
                 "~/Scripts/LargeFileUpload/swfupload.js",
                 "~/Scripts/LargeFileUpload/swfupload.speed.js",
+                "~/Scripts/LargeFileUpload/jquery.swfupload.js",
                 "~/Scripts/LargeFileUpload/SilverlightUpload.js",
                 "~/Scripts/LargeFileUpload/FlashUpload.js",
                 "~/Scripts/LargeFileUpload/LargeUpload.js"));

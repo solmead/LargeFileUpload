@@ -36,7 +36,7 @@ Public Class FileHandler
                 tGUID = Replace(tGUID, "\", "")
                 tGUID = Replace(tGUID, "/", "")
                 If tGUID.Length > 100 Then tGUID = tGUID.Substring(0, 100)
-                Dim FI As New System.IO.FileInfo(Settings.FileDirectory.FullName & "/AsyncUploads/" & tGUID & ".tmp")
+                Dim FI As New System.IO.FileInfo(MySettings.FileDirectory.FullName & "/" & tGUID & ".tmp")
                 If Not FI.Directory.Exists Then FI.Directory.Create()
                 If First Then
                     If FI.Exists Then FI.Delete()
@@ -73,7 +73,7 @@ Public Class FileHandler
                 tGUID = Replace(tGUID, "\", "")
                 tGUID = Replace(tGUID, "/", "")
                 If tGUID.Length > 100 Then tGUID = tGUID.Substring(0, 100)
-                Dim FI As New System.IO.FileInfo(Settings.FileLocation & "/AsyncUploads/" & tGUID & ".tmp")
+                Dim FI As New System.IO.FileInfo(MySettings.FileDirectory.FullName & "/" & tGUID & ".tmp")
                 If Not FI.Directory.Exists Then FI.Directory.Create()
                 If FI.Exists Then
                     T_CRC32 = CalcCRC32(FI)
@@ -118,7 +118,7 @@ Public Class FileHandler
             tGUID = Replace(tGUID, "\", "")
             tGUID = Replace(tGUID, "/", "")
             If tGUID.Length > 100 Then tGUID = tGUID.Substring(0, 100)
-            Dim FI As New System.IO.FileInfo(Settings.FileDirectory.FullName & "/AsyncUploads/" & tGUID & ".tmp")
+            Dim FI As New System.IO.FileInfo(MySettings.FileDirectory.FullName & "/" & tGUID & ".tmp")
             If Not FI.Directory.Exists Then FI.Directory.Create()
             If First Then
                 If FI.Exists Then FI.Delete()

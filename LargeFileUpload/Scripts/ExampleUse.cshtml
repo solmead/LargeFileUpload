@@ -1,0 +1,16 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+
+@{
+    var initilizedCallBack = "";
+    var finishedCallBack = "function () {" + System.Environment.NewLine + "$('#File').parents('form').submit();" + System.Environment.NewLine + "}";
+}
+
+@Scripts.Render("~/bundles/LargeFileUpload")
+
+@using (Html.BeginForm("Edit", "ExecutionTypes", new {Id = Model.Id}, FormMethod.Post, new {enctype = "multipart/form-data"})) {
+
+    @Html.UploadFileActionLink("File", initializedFunction:initilizedCallBack, finishedFunction:finishedCallBack)
+
+    <input type="submit" value="Save" class="button" style="display:none;" />
+}

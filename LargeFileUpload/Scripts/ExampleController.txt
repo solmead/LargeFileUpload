@@ -1,0 +1,15 @@
+﻿
+
+
+public class TestController: Controller {
+	
+	public ActionResult TestUpload() {
+		var titleOfFile="test";
+		GenericUploadedFile uploadedFile = GetUploadedFile("file", titleOfFile, ()=>new GenericUploadedFile());
+            if (uploadedFile != null && uploadedFile.File.Exists) {
+                var file = new FileInfo(uploadedFile.FileName);
+                //do what you want with file
+            }
+	}
+
+}

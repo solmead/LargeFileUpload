@@ -31,5 +31,8 @@
     <file src="Scripts\SilverLightUpload.js" target="Content\Scripts\LargeFileUpload" />
     <file src="Scripts\swfupload.js" target="Content\Scripts\LargeFileUpload" />
     <file src="Scripts\swfupload.speed.js" target="Content\Scripts\LargeFileUpload" />
+    <file src="Scripts\jquery.swfupload.js" target="Content\Scripts\LargeFileUpload" />
+    <file src="Scripts\ExampleController.txt" target="Content\Scripts\LargeFileUpload" />
+    <file src="Scripts\ExampleUse.cshtml" target="Content\Scripts\LargeFileUpload" />
   </files>
 </package>
